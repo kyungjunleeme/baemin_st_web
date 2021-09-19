@@ -1,0 +1,27 @@
+{% extends "baemin/layout.html" %}
+
+{% block content %}
+    <h3>가게목록</h3>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>가게명</th>
+                <th>전화번호</th>
+                <th>주소</th>
+                <th>Action#1</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for shop in shop_list %}
+                <tr>
+                    <td>{{ shop.name }}</td>
+                    <td>{{ shop.tel }}</td>
+                    <td>{{ shop.addr }}</td>
+                    {% comment %} <td><a href="{% url "baemin:order_new" shop.id %}" class="btn btn-primary">주문하기</a></td> {% endcomment %}
+                    <td><a href="{{shop.get_absolute_url}}" class="btn btn-primary">가게 상세 보기</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

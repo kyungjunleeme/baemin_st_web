@@ -1,0 +1,41 @@
+{% extends "baemin/layout.html" %}
+
+{% block content %}
+
+
+<h3>주문 내역 상세</h3>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>가게명</th>
+            <th>메뉴명</th>
+            <th>가격</th>
+            <th>Action#1</th>
+            <th>Action#2</th>
+        </tr>
+    </thead>
+    <tbody>
+            {% for item in order.item_set.all %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.shop }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.itemproperty_set.all }}</td>
+                <td><a href="#" class="btn btn-primary">주문 수량 수정</a></td>
+                <td><a href="#" class="btn btn-primary">주문 내역 삭제</a></td>
+                {% comment %} <td><a href="{{shop.get_absolute_url}}" class="btn btn-primary">가게 상세 보기</a></td> {% endcomment %}
+            </tr>
+            {% endfor %}
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+{% endblock %}

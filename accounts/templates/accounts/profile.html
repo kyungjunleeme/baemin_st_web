@@ -1,0 +1,38 @@
+{% extends "accounts/layout.html" %}
+{% load humanize %}
+
+{% block content %}
+    <h3>{{ user }}'s Profile</h3>
+
+    <h4>주문내역</h4>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>가게명</th>
+                <th>주문상품</th>
+                <th>총액</th>
+                <th>주문일시</th>
+                <th>주문내역 상세 보기</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for order in user.order_set.all %}
+            <tr>
+                <td>{{ order.shop.name }}</td>
+                <td>
+                    {% for item in order.item_set.all %}
+                        {{ item.name }}
+                    {% endfor %}
+                </td>
+                <td>{{ order.total|intcomma }}</td>
+                <td>{{ order.created_at }}</td>
+                <td><a href="{% url "baemin:order_detail" order.pk %}" class="btn btn-primary">주문 내역 상세보기</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

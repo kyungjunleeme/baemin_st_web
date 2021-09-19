@@ -1,0 +1,13 @@
+{% extends "baemin/layout.html" %}
+
+{% block content %}
+    {% comment %} <h3>{{ item. }} Item 이름</h3> {% endcomment %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form }}
+        </table>
+        <input type="submit" />
+    </form>
+{% endblock %}
