@@ -1,0 +1,6 @@
+<select name="type" id="id_price">
+<option value="">---------</option>
+{% for price in prices %}
+<option value="{{ price }}">{{ price}}</option>
+{% endfor %}
+</select>

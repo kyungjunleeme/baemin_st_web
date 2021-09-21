@@ -43,8 +43,8 @@ class ItemProperty(models.Model):
     # suit = models.IntegerField(choices=Suit.choices)
 
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    price = models.PositiveIntegerField()  # 가격
     type = models.CharField(max_length=100, null=True, blank=True)  # 타입이 없을 수도 있음
+    price = models.PositiveIntegerField()  # 가격
 
     # 각종 메뉴 안에서도 대/중/소 말고 다른 옵션들 어떻게 넣는지 생각
 

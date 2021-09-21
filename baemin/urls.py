@@ -10,6 +10,12 @@ urlpatterns = [
     path("shops/<int:pk>/", views.ShopDetailView.as_view(), name="shop_detail"),
     path("items/<int:pk>/", views.ItemDetailView.as_view(), name="item_detail"),
     path("<int:item_id>/new/", views.item_select, name="item_select"),
+    path(
+        "ajax/load_prices/", views.load_prices, name="load_prices"
+    ),  # <-- this one here
+    # path("orders/", views.OrderListView.as_view(), name="order_changelist"),
+    # path("orders/add/", views.OrderCreateView.as_view(), name="order_add"),
+    # path("orders/<int:pk>/", views.OrderUpdateView.as_view(), name="order_change"),
 ]
 
 # baemin/shops/11/

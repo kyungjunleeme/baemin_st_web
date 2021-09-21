@@ -37,7 +37,7 @@ class OrderForm(forms.ModelForm):
 class SelectForm(forms.ModelForm):
     class Meta:
         model = ItemProperty
-        fields = "__all__"
+        fields = ["item", "type"]
 
     def __init__(self, item, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -46,5 +46,17 @@ class SelectForm(forms.ModelForm):
         self.fields["item"].queryset = self.fields["item"].queryset.filter(
             id=item.id
         )  # filter로 지정된 queryset만 넘겨라
+        choices = (("중", "중"), ("소", "소"))
+        self.fields["type"] = forms.ChoiceField(choices=choices)  # label
+
+        if "type" in self.data:
+            print(self.data, "type")
+            try:
+                type_id = int(self.data.get("type"))
+                self.fields["price"] = ItemProperty.objects.filter(type=type_id)
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
+
+        # self.fields['item'].queryset = City.objects.none()
 
         # print(self.fields['item_set']) # <django.forms.models.ModelMultipleChoiceField object at 0x10c6a77c0>

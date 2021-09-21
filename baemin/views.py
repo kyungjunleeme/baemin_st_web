@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView
+from django.urls import reverse_lazy
 from .models import ItemProperty, Shop, Order, Item
 from .forms import OrderForm, SelectForm
 
@@ -99,4 +100,31 @@ def item_select(request, item_id):
             "form": form,
             "item": item,
         },
+    )
+
+
+class ItemPropertyListView(ListView):
+    model = ItemProperty
+    # context_object_name = "재정의하고 싶은 이름"
+
+
+class ItemPropertyCreateView(CreateView):
+    model = ItemProperty
+    form_class = SelectForm
+    success_url = reverse_lazy("itempropery_changelist")
+
+
+class ItemPropertyUpdateView(UpdateView):
+    model = ItemProperty
+    form_class = SelectForm
+    success_url = reverse_lazy("itempropery_changelist")
+
+
+def load_prices(request):
+    type_id = request.GET.get("type")
+    print(type_id)
+    prices = ItemProperty.objects.filter(type=type_id)
+    print(prices)
+    return render(
+        request, "baemin/prices_dropdown_list_options.html", {"prices": prices}
     )

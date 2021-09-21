@@ -3,11 +3,40 @@
 {% block content %}
     {% comment %} <h3>{{ item. }} Item 이름</h3> {% endcomment %}
 
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>
-            {{ form }}
-        </table>
-        <input type="submit" />
-    </form>
+
+  <form method="post" id="selectForm" data-prices-url="{% url 'baemin:load_prices' %}" novalidate>
+    {% csrf_token %}
+    <table>
+      {{ form }}
+    </table>
+    <button type="submit">Save</button>
+    <a href="#">Nevermind</a>
+  </form>
+
+  <script>
+    $("#id_type").change(function () {
+      var url = $("#selectForm").attr("data-prices-url");  // get the url of the `load_cities` view
+      console.log(url);
+      var typeId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'type': typeId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          console.log(data);
+          $("#id_price").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+  </script>
+
 {% endblock %}
+
+
+
+
+
+
