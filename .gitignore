@@ -173,6 +173,10 @@ cython_debug/
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
 
+# kyungjun
+*.ipynb
+
+
 # IPython
 profile_default/
 ipython_config.py
