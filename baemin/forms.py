@@ -37,7 +37,7 @@ class OrderForm(forms.ModelForm):
 class SelectForm(forms.ModelForm):
     class Meta:
         model = ItemProperty
-        fields = ["item", "type"]
+        fields = ["item", "type", "price"]
 
     def __init__(self, item, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -46,6 +46,7 @@ class SelectForm(forms.ModelForm):
         self.fields["item"].queryset = self.fields["item"].queryset.filter(
             id=item.id
         )  # filter로 지정된 queryset만 넘겨라
+        print(item, item.id)
         choices = (("중", "중"), ("소", "소"))
         self.fields["type"] = forms.ChoiceField(choices=choices)  # label
 

@@ -9,7 +9,8 @@ urlpatterns = [
     path("orders/<int:pk>/", views.OrerDetailView.as_view(), name="order_detail"),
     path("shops/<int:pk>/", views.ShopDetailView.as_view(), name="shop_detail"),
     path("items/<int:pk>/", views.ItemDetailView.as_view(), name="item_detail"),
-    path("<int:item_id>/new/", views.item_select, name="item_select"),
+    # path("<int:item_id>/new/", views.item_select, name="item_select"),
+    path("<int:item_id>/new/", views.ItemCreateView.as_view(), name="item_select"),
     path(
         "ajax/load_prices/", views.load_prices, name="load_prices"
     ),  # <-- this one here
