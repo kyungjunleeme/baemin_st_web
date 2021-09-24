@@ -1,0 +1,25 @@
+sudo ufw allow 8000
+date 명령 후
+(.venv) ubuntu@kyugjunleeme:~/baemin_st_web$ date
+Fri Sep 24 06:02:27 UTC 2021
+(.venv) ubuntu@kyugjunleeme:~/baemin_st_web$ sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+(.venv) ubuntu@kyugjunleeme:~/baemin_st_web$ date
+Fri Sep 24 15:02:34 KST 2021
+
+sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+
+그리고 기존에 실행한 장고 서버를 종료하기 위해 다음과 같이 killall python 명령을 수행한 후 서버를 다시 실행하자.
+
+  139  netstat -nap
+  140  sudo ufw enable
+
+
+
+   64  iptables --list
+   65  sudo iptables -I INPUT 1 -p tcp --dport 80 -j ACCEPT
+   66  sudo iptables -I INPUT 1 -p tcp --dport 443 -j ACCEPT
+   67  iptables --list
+   68  iptables --list > iptables.log
+   69  ls
+   70  python manage.py runserver 0.0.0.0:80
+   71  history
