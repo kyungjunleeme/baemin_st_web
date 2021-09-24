@@ -93,12 +93,19 @@ WSGI_APPLICATION = "baemin_web.wsgi.application"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 # https://github.com/joke2k/django-environ/issues/219
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": env.db(),
 }
+
+
 # We have to use reverse_lazy() instead of reverse(), as the urls are not loaded when the file is imported.
 
 # LOGIN_URL = reverse_lazy("login")
